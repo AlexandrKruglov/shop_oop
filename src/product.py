@@ -67,3 +67,31 @@ class RangeProductc:
             return self.value
         else:
             raise StopIteration
+
+
+class Smartphone(Product):
+    performance: str
+    model: str
+    memory: str
+    color: str
+
+    def __init__(self,name, description, price,
+                 quantity, performance, model, memory, color):
+        super().__init__(name, description, price, quantity)
+        self.performance = performance
+        self.model = model
+        self.memory = memory
+        self.color = color
+
+
+class Grass(Product):
+    made_in: str
+    growing_period: int
+    color: str
+
+    def __init__(self, name, description, price,
+                 quantity, made_in,growing_period, color):
+        super().__init__(name, description, price, quantity)
+        self.made_in = made_in
+        self.growing_period = growing_period
+        self.color = color
