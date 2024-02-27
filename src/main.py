@@ -1,5 +1,6 @@
 from src.category import Category
 from src.product import Product
+from src.product import Grass
 import json
 from src.config import PRODUCTS_JSON
 
@@ -32,4 +33,6 @@ if __name__ == '__main__':
     for j in Category.get_list_podukts(category_list[0]):
         print(j)
 
-    print(Category.get_obj_from_product(category_list[0], 0) + Category.get_obj_from_product(category_list[0], 1))
+    print(Category.get_obj_from_product(category_list[0], 0) + Category.get_obj_from_product(category_list[1], 0))
+    exmp = Grass('gras', 'up', 100.0, 2, 'rus', 3, 'red')
+    print(Category.get_obj_from_product(category_list[0], 0) + exmp)

@@ -44,7 +44,9 @@ class Product:
 
     def __add__(self, other):
         """складывает общуюсумму стоимость всех единиц двух видов продукта"""
-        return self.price * self.quantity + other.price * other.quantity
+        if type(other) == type(self):
+            return self.price * self.quantity + other.price * other.quantity
+        raise TypeError
 
 
 class RangeProductc:
