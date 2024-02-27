@@ -9,6 +9,7 @@ class Product:
     description: str
     price: float
     quantity: int
+    color: str
 
     def __init__(self, name, description, price, quantity):
         self.name = name
@@ -72,10 +73,10 @@ class RangeProductc:
 
 
 class Smartphone(Product):
+    """класс смартфотны наследуется от класса продукт """
     performance: str
     model: str
-    memory: str
-    color: str
+    memory: int
 
     def __init__(self,name, description, price,
                  quantity, performance, model, memory, color):
@@ -87,9 +88,9 @@ class Smartphone(Product):
 
 
 class Grass(Product):
+    """класс трава газонная наследуется от класса продукт"""
     made_in: str
     growing_period: int
-    color: str
 
     def __init__(self, name, description, price,
                  quantity, made_in,growing_period, color):

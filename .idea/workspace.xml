@@ -6,7 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="0b8ad633-7967-4964-a7d2-b05167bc3c32" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/category.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/category.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/product.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/product.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_category.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_category.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,23 +46,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python tests.Python tests for test_category.test_add_obj.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test_category.test_get_list_product.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test_category.test_init_category.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test_category.test_len_product.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests in test_category.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python.category.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/alexandr/PycharmProjects/transaction&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python tests.Python tests for test_category.test_add_obj.executor": "Run",
+    "Python tests.Python tests for test_category.test_get_list_product.executor": "Run",
+    "Python tests.Python tests for test_category.test_init_category.executor": "Run",
+    "Python tests.Python tests for test_category.test_len_product.executor": "Run",
+    "Python tests.Python tests in test_category.py.executor": "Run",
+    "Python.category.executor": "Run",
+    "Python.main.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "feature",
+    "last_opened_file_path": "/home/alexandr/PycharmProjects/Project_oop_shop",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
-}</component>
-  <component name="RunManager" selected="Python.main">
+}]]></component>
+  <component name="RunManager" selected="Python tests.Python tests in test_category.py">
     <configuration name="category" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Project_oop_shop" />
       <option name="ENV_FILES" value="" />
@@ -151,8 +154,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.main" />
         <item itemvalue="Python tests.Python tests in test_category.py" />
+        <item itemvalue="Python.main" />
         <item itemvalue="Python tests.Python tests for test_category.test_add_obj" />
         <item itemvalue="Python.category" />
         <item itemvalue="Python tests.Python tests for test_category.test_get_list_product" />
@@ -162,7 +165,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-5a2391486177-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.13763.11" />
+        <option value="bundled-python-sdk-d68999036c7f-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.14475.56" />
       </set>
     </attachedChunks>
   </component>
@@ -207,7 +210,23 @@
       <option name="project" value="LOCAL" />
       <updated>1708994731010</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="добавили два подкласса Smartphon Grass наследуют от класса Product">
+      <option name="closed" value="true" />
+      <created>1708997982302</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1708997982302</updated>
+    </task>
+    <task id="LOCAL-00006" summary="доработали метод add класса Product при сложении разных классов выпадает ошибка">
+      <option name="closed" value="true" />
+      <created>1708999942728</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1708999942728</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -215,6 +234,8 @@
     <MESSAGE value="add pytest" />
     <MESSAGE value="add regs" />
     <MESSAGE value="создали два класса Category и Product . из json файла сделали список объектов  Category" />
-    <option name="LAST_COMMIT_MESSAGE" value="создали два класса Category и Product . из json файла сделали список объектов  Category" />
+    <MESSAGE value="добавили два подкласса Smartphon Grass наследуют от класса Product" />
+    <MESSAGE value="доработали метод add класса Product при сложении разных классов выпадает ошибка" />
+    <option name="LAST_COMMIT_MESSAGE" value="доработали метод add класса Product при сложении разных классов выпадает ошибка" />
   </component>
 </project>

@@ -1,3 +1,6 @@
+from src.product import Product
+
+
 class Category:
     """класс категория хранит название категории,
       описание категории,
@@ -29,7 +32,6 @@ class Category:
         new_obj_prod = cls(dict_prod["name"], dict_prod["description"], dict_prod["products"])
         return new_obj_prod
 
-
     def get_list_podukts(self):
         """возвращает список продуктов"""
         return self.__products
@@ -37,14 +39,16 @@ class Category:
     def get_obj_from_product(self, num):
         return self.__products[num]
 
-
     def add_obj(self, obj_prod):
         """ добавляет продукт в список продуктов принимет объект класса продукт"""
-        self.__products.append(obj_prod)
-        return self.__products
+        if isinstance(obj_prod, Product):
+            self.__products.append(obj_prod)
+            return self.__products
+        raise "добавляемый обект не является классом Product или его наследником"
 
     @property
     def input_info(self):
+        """выводит список продуктов в нужном формате"""
         list_product = self.__products
         new_list = []
         for i in list_product:
