@@ -39,20 +39,23 @@ if __name__ == '__main__':
     # print(Category.get_obj_from_product(category_list[0], 0) + Category.get_obj_from_product(category_list[1], 0))
 
     exmp = Grass('gras', 'up', 100.0, 2, 'rus', 3, 'red')
-    exemp2 = Smartphone('poco', 'call', 9000, '4', '5', 'm3', 64, 'green')
-
+    exemp2 = Smartphone('poco', 'call', 9000, 5, '5', 'm3', 64, 'green')
+    exemp3 = Category('car', 'drive', [])
     # exemp3 = Test_1('gfg')
 
     ex_order = Order('Iphone 15', 5, 100)
-    print(Category.sub_prod(category_list, ex_order))
+    #print(Category.sub_prod(category_list, ex_order))
 
-    print(Product.mro())
 
     #print(Category.get_obj_from_product(category_list[0], 0) + exmp)
     #print(exmp)
     # print(exemp2)
     # print(Category)
-    # category_list[0].add_obj(exemp2)
+    category_list[0].add_obj(exemp2)
+    print(category_list[0])
+    print(category_list[0].get_average_price())
+    exemp3.get_average_price()
+
     # for j in Category.get_list_podukts(category_list[0]):
     #     print(j)
     # print(category_list[0])

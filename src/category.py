@@ -66,9 +66,21 @@ class Category(MixinLog, TradeTurnover):
     def add_obj(self, obj_prod):
         """ добавляет продукт в список продуктов принимет объект класса продукт"""
         if isinstance(obj_prod, Product):
+            if obj_prod.quantity <= 0:
+                raise "товар с нулевым количеством не может быть добавлен"
             self.__products.append(obj_prod)
             return self.__products
         raise "добавляемый обект не является классом Product или его наследником"
+
+    def get_average_price(self):
+        total_price = 0
+        for i in self.__products:
+            total_price += i.price
+        try:
+            average_price = total_price / len(self.__products)
+            return average_price
+        except ZeroDivisionError:
+            print("Сумма  = 0")
 
     @classmethod
     def sub_prod(cls, list_cls, obj_prod):
