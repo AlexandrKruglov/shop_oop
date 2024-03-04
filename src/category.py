@@ -1,11 +1,34 @@
-from src.product import Product
+from src.product import Product, MixinLog
+from abc import ABC, abstractmethod
 
 
-class Category:
+class TradeTurnover(ABC):
+    name: str
+
+    @abstractmethod
+    def __init__(self, ):
+        pass
+
+    def __str__(self):
+        pass
+
+
+# class MixinLog:
+#     ID = 1
+#
+#     def __init__(self):
+#         self.id = self.ID
+#         MixinLog.ID +=1
+#         print(self.__repr__())
+#
+#     def __repr__(self):
+#         return f'создана категоря, id {self.id} {self.__str__()}'
+
+
+class Category(MixinLog, TradeTurnover):
     """класс категория хранит название категории,
       описание категории,
       список входящих продуктов"""
-    name: str
     description: str
     products: list
     count_name = 0
@@ -17,6 +40,7 @@ class Category:
         self.__products = products
         self.count_name += 1
         self.count_products = len(self.__products)
+        super().__init__()
 
     def __len__(self):
         return len(self.__products)
@@ -46,6 +70,19 @@ class Category:
             return self.__products
         raise "добавляемый обект не является классом Product или его наследником"
 
+    @classmethod
+    def sub_prod(cls, list_cls, obj_prod):
+        """ удаляет кол-во товара по заказу из списк продуктов """
+        for j in list_cls:
+            for i in j.__products:
+                if i.name == obj_prod.name:
+                    temp = i.quantity - obj_prod.quantity
+                    if temp < 0 :
+                        raise "такого количества нет"
+                    i.quantity = temp
+                    return i.__str__
+        raise "нет этого товара"
+
     @property
     def input_info(self):
         """выводит список продуктов в нужном формате"""
@@ -54,4 +91,22 @@ class Category:
         for i in list_product:
             new_list.append(str(i))
         return "\n".join(new_list)
+
+class Order(MixinLog, TradeTurnover):
+    quantity: int
+    price: float
+
+    def __init__(self,name, quantity, price):
+        self.name = name
+        self.quantity = quantity
+        self.price = price #цену задаем сами . можно прописать метод поска товара по всем категориям
+                        #как в методе sub_prod и брать цену от туда если нет товара выдавть raise" .."
+        super().__init__()
+
+    def __str__(self):
+        return f'заказ {self.name}, кол-во {self.quantity}, на сумму {self.price * self.quantity}'
+
+
+
+
 
