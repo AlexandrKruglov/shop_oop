@@ -1,4 +1,4 @@
-from src.category import Category, Order
+from src.category import Category, Order, ProdEmptyException
 from src.product import Product
 from src.product import Grass, Smartphone
 import json
@@ -25,14 +25,9 @@ if __name__ == '__main__':
             cat_obj_list.append(Category.create_product(i))
         return cat_obj_list
 
-    # class Test_1:
-    #
-    #     def __init__(self,name):
-    #         self.name = name
 
-    list_prod_json = make_list_products()
-    category_list = make_obj_prod(list_prod_json)
-    print(category_list[0])
+    list_prod_json = make_list_products()  # список из products.json
+    category_list = make_obj_prod(list_prod_json)  # список категорий
 
     # for j in Category.get_list_podukts(category_list[0]):
     #     print(j)
@@ -41,22 +36,28 @@ if __name__ == '__main__':
     exmp = Grass('gras', 'up', 100.0, 2, 'rus', 3, 'red')
     exemp2 = Smartphone('poco', 'call', 9000, 5, '5', 'm3', 64, 'green')
     exemp3 = Category('car', 'drive', [])
-    # exemp3 = Test_1('gfg')
 
-    ex_order = Order('Iphone 15', 5, 100)
-    #print(Category.sub_prod(category_list, ex_order))
+    # print(Category.sub_prod(category_list, ex_order))
 
-
-    #print(Category.get_obj_from_product(category_list[0], 0) + exmp)
-    #print(exmp)
-    # print(exemp2)
-    # print(Category)
-    category_list[0].add_obj(exemp2)
     print(category_list[0])
-    print(category_list[0].get_average_price())
-    exemp3.get_average_price()
+    try:
+        category_list[0].add_obj(exemp2)  # добавляем продукт в список продуктов данной категории
+    except ProdEmptyException as e:
+        print(e)
+    else:
+        print(f'{category_list[0]} товар добавлен')
+    finally:
+        print("обработка добавления товара завершена")
 
-    # for j in Category.get_list_podukts(category_list[0]):
-    #     print(j)
-    # print(category_list[0])
-    # category_list[0].add_obj(exemp3)
+    try:
+        x_order = Order('Iphone 15', 5, 100)  # создаем экземпляр класса заказ
+    except ProdEmptyException as e:
+        print(e)
+    else:
+        print(f'{x_order} заказ добавлен')
+    finally:
+        print("обработка заказа завершена")
+
+    print(category_list[0].get_average_price())  # высчитываем средний ценик товаров данной категории
+    exemp3.get_average_price()  # если в категории нет товаров возвращает ноль
+
