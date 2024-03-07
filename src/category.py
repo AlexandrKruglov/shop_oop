@@ -13,18 +13,6 @@ class TradeTurnover(ABC):
         pass
 
 
-# class MixinLog:
-#     ID = 1
-#
-#     def __init__(self):
-#         self.id = self.ID
-#         MixinLog.ID +=1
-#         print(self.__repr__())
-#
-#     def __repr__(self):
-#         return f'создана категоря, id {self.id} {self.__str__()}'
-
-
 class Category(MixinLog, TradeTurnover):
     """класс категория хранит название категории,
       описание категории,
@@ -66,9 +54,24 @@ class Category(MixinLog, TradeTurnover):
     def add_obj(self, obj_prod):
         """ добавляет продукт в список продуктов принимет объект класса продукт"""
         if isinstance(obj_prod, Product):
+            if obj_prod.quantity <= 0:
+                #  raise "товар с нулевым количеством не может быть добавлен"
+                raise ProdEmptyException()
             self.__products.append(obj_prod)
             return self.__products
         raise "добавляемый обект не является классом Product или его наследником"
+
+    def get_average_price(self):
+        """подсчитывает средний ценник всех товаров .
+         При отсутствии товаров возвращает ноль"""
+        total_price = 0
+        for i in self.__products:
+            total_price += i.price
+        try:
+            average_price = total_price / len(self.__products)
+            return average_price
+        except ZeroDivisionError:
+            print("Сумма  = 0")
 
     @classmethod
     def sub_prod(cls, list_cls, obj_prod):
@@ -92,21 +95,29 @@ class Category(MixinLog, TradeTurnover):
             new_list.append(str(i))
         return "\n".join(new_list)
 
+
 class Order(MixinLog, TradeTurnover):
+    """класс заказ """
     quantity: int
     price: float
 
-    def __init__(self,name, quantity, price):
+    def __init__(self, name, quantity, price):
         self.name = name
+        if quantity <= 0:
+            raise ProdEmptyException()
         self.quantity = quantity
-        self.price = price #цену задаем сами . можно прописать метод поска товара по всем категориям
-                        #как в методе sub_prod и брать цену от туда если нет товара выдавть raise" .."
+        self.price = price  # цену задаем сами . можно прописать метод поска товара по всем категориям
+                            # как в методе sub_prod и брать цену от туда если нет товара выдавть raise" .."
         super().__init__()
 
     def __str__(self):
         return f'заказ {self.name}, кол-во {self.quantity}, на сумму {self.price * self.quantity}'
 
 
+class ProdEmptyException(Exception):
 
+    def __init__(self, *args, **kwargs):
+        self.masege = args[0] if args else 'ошибка количество товара равно нулю'
 
-
+    def __str__(self):
+        return self.masege
