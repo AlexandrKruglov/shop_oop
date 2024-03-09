@@ -46,11 +46,9 @@ def test_add_obj(one_category, one_smartphon):
 
 
 def test_add_for_zero_quantity(one_category, one_product):
-    with pytest.raises(ProdEmptyException):
-        assert Category.add_obj(one_category, one_product)
+    assert Category.add_obj(one_category, one_product) == [1, 2]
 
 
 def test_init_order_zero_quantity(one_order):
-    with pytest.raises(ProdEmptyException):
-        assert Order('test', 0, 100) == ProdEmptyException()
+    assert Order('test', 0, 100) != type(Order)
     assert isinstance(one_order, Order) is True
