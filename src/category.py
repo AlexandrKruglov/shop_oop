@@ -12,6 +12,15 @@ class TradeTurnover(ABC):
     def __str__(self):
         pass
 
+    def init_zero(self, quantity):
+        """метод проверяет количество товара если 0 выдает ошибку
+        использую в добавление продукта в список продуктов категории и  создании екземпляра класса заказ"""
+        if quantity <= 0:
+            raise ProdEmptyException()
+        else:
+            self.quantity = quantity
+            return self.quantity
+
 
 class Category(MixinLog, TradeTurnover):
     """класс категория хранит название категории,
@@ -54,11 +63,17 @@ class Category(MixinLog, TradeTurnover):
     def add_obj(self, obj_prod):
         """ добавляет продукт в список продуктов принимет объект класса продукт"""
         if isinstance(obj_prod, Product):
-            if obj_prod.quantity <= 0:
-                #  raise "товар с нулевым количеством не может быть добавлен"
-                raise ProdEmptyException()
-            self.__products.append(obj_prod)
-            return self.__products
+            try:
+                self.init_zero(obj_prod.quantity)
+            except ProdEmptyException as e:
+                print(e)
+            else:
+                self.__products.append(obj_prod)
+                print("товар добавлен")
+                return self.__products
+            finally:
+                print("обработка завершина")
+                return self.__products
         raise "добавляемый обект не является классом Product или его наследником"
 
     def get_average_price(self):
@@ -71,7 +86,7 @@ class Category(MixinLog, TradeTurnover):
             average_price = total_price / len(self.__products)
             return average_price
         except ZeroDivisionError:
-            print("Сумма  = 0")
+            return 0
 
     @classmethod
     def sub_prod(cls, list_cls, obj_prod):
@@ -102,13 +117,18 @@ class Order(MixinLog, TradeTurnover):
     price: float
 
     def __init__(self, name, quantity, price):
-        self.name = name
-        if quantity <= 0:
-            raise ProdEmptyException()
-        self.quantity = quantity
-        self.price = price  # цену задаем сами . можно прописать метод поска товара по всем категориям
-                            # как в методе sub_prod и брать цену от туда если нет товара выдавть raise" .."
-        super().__init__()
+
+        try:
+            self.name = name
+            self.price = price
+            self.quantity = self.init_zero(quantity)
+            super().__init__()
+        except ProdEmptyException as e:
+            print(e)
+        else:
+            print("заказ добавлен")
+        finally:
+            print("обработка заказа завершина")
 
     def __str__(self):
         return f'заказ {self.name}, кол-во {self.quantity}, на сумму {self.price * self.quantity}'
@@ -117,7 +137,7 @@ class Order(MixinLog, TradeTurnover):
 class ProdEmptyException(Exception):
 
     def __init__(self, *args, **kwargs):
-        self.masege = args[0] if args else 'ошибка количество товара равно нулю'
+            self.masege = args[0] if args else 'ошибка количество товара равно нулю'
 
     def __str__(self):
         return self.masege

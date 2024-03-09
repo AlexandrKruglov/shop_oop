@@ -34,30 +34,17 @@ if __name__ == '__main__':
     # print(Category.get_obj_from_product(category_list[0], 0) + Category.get_obj_from_product(category_list[1], 0))
 
     exmp = Grass('gras', 'up', 100.0, 2, 'rus', 3, 'red')
-    exemp2 = Smartphone('poco', 'call', 9000, 5, '5', 'm3', 64, 'green')
+    exemp2 = Smartphone('poco', 'call', 9000, 0, '5', 'm3', 64, 'green')
     exemp3 = Category('car', 'drive', [])
 
     # print(Category.sub_prod(category_list, ex_order))
-
     print(category_list[0])
-    try:
-        category_list[0].add_obj(exemp2)  # добавляем продукт в список продуктов данной категории
-    except ProdEmptyException as e:
-        print(e)
-    else:
-        print(f'{category_list[0]} товар добавлен')
-    finally:
-        print("обработка добавления товара завершена")
 
-    try:
-        x_order = Order('Iphone 15', 5, 100)  # создаем экземпляр класса заказ
-    except ProdEmptyException as e:
-        print(e)
-    else:
-        print(f'{x_order} заказ добавлен')
-    finally:
-        print("обработка заказа завершена")
+    category_list[0].add_obj(exemp2)  # добавляем продукт в список продуктов данной категории
+    print(category_list[0])
+
+    x_order = Order('Iphone 15', 0, 100)  # создаем экземпляр класса заказ
 
     print(category_list[0].get_average_price())  # высчитываем средний ценик товаров данной категории
-    exemp3.get_average_price()  # если в категории нет товаров возвращает ноль
+    print(exemp3.get_average_price())  # если в категории нет товаров возвращает ноль
 
